@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10th Graduation Gathering & Christmas Party</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Snowfall animation */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(192, 57, 43, 0.15), rgba(39, 174, 96, 0.15));
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 40px;
+        }
+
+        .hero-emoji {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f5d061, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+        }
+
+        /* Event details */
+        .details {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .detail-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .detail-card .icon {
+            font-size: 1.5rem;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .detail-card .info h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 4px;
+        }
+
+        .detail-card .info p {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* RSVP Form */
+        .rsvp-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px 32px;
+        }
+
+        .rsvp-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .rsvp-section .form-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 32px;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(245, 208, 97, 0.5);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .form-group select {
+            appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        .form-group select option {
+            background: #1a1a2e;
+            color: #fff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .partner-fields {
+            display: none;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            margin-top: 12px;
+        }
+
+        .partner-fields.visible {
+            display: block;
+        }
+
+        .partner-fields h4 {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 16px;
+        }
+
+        .attendance-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .attendance-option {
+            position: relative;
+        }
+
+        .attendance-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .attendance-option label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .attendance-option input[type="radio"]:checked + label {
+            background: rgba(39, 174, 96, 0.15);
+            border-color: rgba(39, 174, 96, 0.6);
+            color: #6ee7a0;
+        }
+
+        .attendance-option:last-child input[type="radio"]:checked + label {
+            background: rgba(192, 57, 43, 0.15);
+            border-color: rgba(192, 57, 43, 0.6);
+            color: #ff8a80;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #f5d061, #ff6b6b);
+            border: none;
+            border-radius: 12px;
+            color: #1a1a2e;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(245, 208, 97, 0.3);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-message.visible {
+            display: block;
+        }
+
+        .success-message .check {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .success-message h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .success-message p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 16px;
+            }
+
+            .hero {
+                padding: 40px 16px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .rsvp-section {
+                padding: 28px 20px;
+            }
+
+            .attendance-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Snowfall effect -->
+    <div class="snowflakes" id="snowflakes"></div>
+
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-emoji">🎄✨🥂</div>
+            <h1>10th Graduation Gathering &<br>Christmas Party</h1>
+            <p class="subtitle">Let's celebrate a decade of friendship!</p>
+        </div>
+
+        <!-- Event Details -->
+        <div class="details">
+            <div class="detail-card">
+                <div class="icon">📅</div>
+                <div class="info">
+                    <h3>Date</h3>
+                    <p>19 – 20 December 2026 (2D1N)</p>
+                </div>
+            </div>
+            <div class="detail-card">
+                <div class="icon">📍</div>
+                <div class="info">
+                    <h3>Venue</h3>
+                    <p>TBC — Airbnb (fits 30-40 pax)</p>
+                </div>
+            </div>
+            <div class="detail-card">
+                <div class="icon">🎉</div>
+                <div class="info">
+                    <h3>What to Expect</h3>
+                    <p>Food, games, gift exchange & good vibes</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RSVP Form -->
+        <div class="rsvp-section">
+            <h2>RSVP</h2>
+            <p class="form-subtitle">Please let us know if you're coming!</p>
+
+            <form id="rsvpForm">
+                <!-- Attendance -->
+                <div class="form-group">
+                    <label>Will you be joining us?</label>
+                    <div class="attendance-options">
+                        <div class="attendance-option">
+                            <input type="radio" id="attending-yes" name="attending" value="Yes" required>
+                            <label for="attending-yes">🎉 Yes, count me in!</label>
+                        </div>
+                        <div class="attendance-option">
+                            <input type="radio" id="attending-no" name="attending" value="No">
+                            <label for="attending-no">😢 Can't make it</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main fields (shown when attending) -->
+                <div id="attendingFields">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="e.g. 012-3456789" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pax">Number of Pax *</label>
+                        <select id="pax" name="pax" required>
+                            <option value="" disabled selected>Select pax</option>
+                            <option value="1">1 Pax (Just me)</option>
+                            <option value="2">2 Pax (Bringing partner)</option>
+                        </select>
+                    </div>
+
+                    <!-- Partner details -->
+                    <div class="partner-fields" id="partnerFields">
+                        <h4>Partner Details</h4>
+                        <div class="form-group">
+                            <label for="partnerName">Partner's Name *</label>
+                            <input type="text" id="partnerName" name="partnerName" placeholder="Enter partner's name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dietary">Dietary Requirements / Allergies</label>
+                        <input type="text" id="dietary" name="dietary" placeholder="e.g. Vegetarian, no seafood, etc.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="remarks">Any Remarks</label>
+                        <textarea id="remarks" name="remarks" placeholder="Anything else you'd like us to know?"></textarea>
+                    </div>
+                </div>
+
+                <!-- Decline fields -->
+                <div id="declineFields" style="display:none;">
+                    <div class="form-group">
+                        <label for="declineName">Your Name *</label>
+                        <input type="text" id="declineName" name="declineName" placeholder="Enter your full name">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">Submit RSVP</button>
+            </form>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <div class="check">✅</div>
+                <h3>Thank you!</h3>
+                <p>Your RSVP has been recorded. See you there! 🎄</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Made with ❤️ for our 10th year together</p>
+        </div>
+    </div>
+
+    <script>
+        // === Snowfall Effect ===
+        function createSnowflakes() {
+            const container = document.getElementById('snowflakes');
+            const flakes = ['❄', '❅', '❆', '•'];
+            for (let i = 0; i < 30; i++) {
+                const flake = document.createElement('div');
+                flake.classList.add('snowflake');
+                flake.textContent = flakes[Math.floor(Math.random() * flakes.length)];
+                flake.style.left = Math.random() * 100 + '%';
+                flake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                flake.style.animationDelay = Math.random() * 5 + 's';
+                flake.style.fontSize = (Math.random() * 0.8 + 0.5) + 'rem';
+                flake.style.opacity = Math.random() * 0.6 + 0.2;
+                container.appendChild(flake);
+            }
+        }
+        createSnowflakes();
+
+        // === Form Logic ===
+        const form = document.getElementById('rsvpForm');
+        const paxSelect = document.getElementById('pax');
+        const partnerFields = document.getElementById('partnerFields');
+        const attendingFields = document.getElementById('attendingFields');
+        const declineFields = document.getElementById('declineFields');
+        const attendingRadios = document.querySelectorAll('input[name="attending"]');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+
+        // Toggle attending/not attending fields
+        attendingRadios.forEach(radio => {
+            radio.addEventListener('change', function () {
+                if (this.value === 'Yes') {
+                    attendingFields.style.display = 'block';
+                    declineFields.style.display = 'none';
+                    document.getElementById('name').required = true;
+                    document.getElementById('phone').required = true;
+                    paxSelect.required = true;
+                    document.getElementById('declineName').required = false;
+                } else {
+                    attendingFields.style.display = 'none';
+                    declineFields.style.display = 'block';
+                    document.getElementById('name').required = false;
+                    document.getElementById('phone').required = false;
+                    paxSelect.required = false;
+                    document.getElementById('declineName').required = true;
+                }
+            });
+        });
+
+        // Toggle partner fields
+        paxSelect.addEventListener('change', function () {
+            if (this.value === '2') {
+                partnerFields.classList.add('visible');
+                document.getElementById('partnerName').required = true;
+            } else {
+                partnerFields.classList.remove('visible');
+                document.getElementById('partnerName').required = false;
+            }
+        });
+
+        // === Form Submission ===
+        // IMPORTANT: Replace this URL with your Google Apps Script Web App URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw2weZdljzlY05sODIbO-bQrLxV7GrjobBAqdT9wz2zoLedT84-OlQFNo13XLpRkGihNg/exec';
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const attending = document.querySelector('input[name="attending"]:checked').value;
+
+            const data = {
+                timestamp: new Date().toLocaleString(),
+                attending: attending,
+                name: attending === 'Yes' ? document.getElementById('name').value.trim() : document.getElementById('declineName').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                pax: paxSelect.value,
+                partnerName: document.getElementById('partnerName').value.trim(),
+                dietary: document.getElementById('dietary').value.trim(),
+                remarks: document.getElementById('remarks').value.trim()
+            };
+
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                // Show success
+                form.style.display = 'none';
+                successMessage.classList.add('visible');
+                if (attending === 'No') {
+                    successMessage.querySelector('p').textContent = "We'll miss you! Maybe next time. 💛";
+                }
+            } catch (error) {
+                alert('Something went wrong. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit RSVP';
+            }
+        });
+    </script>
+</body>
+</html>
